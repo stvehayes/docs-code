@@ -1,0 +1,1 @@
+{"version":3,"file":"_FormControlCaption.d.ts","sourceRoot":"","sources":["../../src/FormControl/_FormControlCaption.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAA;AAEzB,OAAO,KAAK,EAAC,MAAM,EAAC,MAAM,OAAO,CAAA;AAGjC,QAAA,MAAM,kBAAkB,EAAE,KAAK,CAAC,EAAE,CAAC,KAAK,CAAC,iBAAiB,CAAC;IAAC,EAAE,CAAC,EAAE,MAAM,CAAA;CAAC,GAAG,MAAM,CAAC,CAOjF,CAAA;AAED,eAAe,kBAAkB,CAAA"}

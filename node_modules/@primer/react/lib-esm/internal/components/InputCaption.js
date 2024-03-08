@@ -1,0 +1,18 @@
+import React from 'react';
+import Text from '../../Text/Text.js';
+
+const InputCaption = ({
+  children,
+  disabled,
+  id,
+  sx
+}) => /*#__PURE__*/React.createElement(Text, {
+  color: disabled ? 'fg.subtle' : 'fg.muted',
+  display: "block",
+  fontSize: 0,
+  id: id,
+  sx: sx
+}, children);
+InputCaption.displayName = "InputCaption";
+
+export { InputCaption as default };

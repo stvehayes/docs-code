@@ -1,0 +1,1 @@
+{"version":3,"file":"AvatarToken.d.ts","sourceRoot":"","sources":["../../src/Token/AvatarToken.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAC,cAAc,EAAgB,MAAM,aAAa,CAAA;AAI9D,OAAO,KAAK,EAAC,mBAAmB,IAAI,8BAA8B,EAAC,MAAM,sBAAsB,CAAA;AAG/F,MAAM,WAAW,gBAAiB,SAAQ,cAAc;IACtD,SAAS,EAAE,MAAM,CAAA;CAClB;AAYD,QAAA,MAAM,WAAW,2EAwB8D,CAAA;AAI/E,eAAe,WAAW,CAAA"}

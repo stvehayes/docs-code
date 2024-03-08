@@ -1,0 +1,1 @@
+{"version":3,"file":"ssr.d.ts","sourceRoot":"","sources":["../../src/utils/ssr.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAC,iBAAiB,EAAC,MAAM,OAAO,CAAA;AAC5C,OAAO,EAAC,KAAK,EAAC,MAAM,gBAAgB,CAAA;AAEpC,wBAAgB,WAAW,CAAC,EAAC,QAAQ,EAAC,EAAE,iBAAiB,6BAExD;AAED,eAAO,MAAM,YAAY,cAAQ,CAAA"}

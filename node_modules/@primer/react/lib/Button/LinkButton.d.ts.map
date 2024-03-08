@@ -1,0 +1,1 @@
+{"version":3,"file":"LinkButton.d.ts","sourceRoot":"","sources":["../../src/Button/LinkButton.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAC,eAAe,EAAC,MAAM,SAAS,CAAA;AAC5C,OAAO,KAAK,EAAC,eAAe,EAAC,MAAM,cAAc,CAAA;AAEjD,OAAO,KAAK,EAAC,mBAAmB,IAAI,8BAA8B,EAAC,MAAM,sBAAsB,CAAA;AAG/F,KAAK,OAAO,GAAG,eAAe,GAAG,eAAe,CAAA;AAEhD,QAAA,MAAM,UAAU,8CAciC,CAAA;AAEjD,OAAO,EAAC,UAAU,EAAC,CAAA"}

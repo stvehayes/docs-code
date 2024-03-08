@@ -1,0 +1,1 @@
+{"version":3,"file":"eventListenerSignal.d.ts","sourceRoot":"","sources":["../../src/polyfills/eventListenerSignal.ts"],"names":[],"mappings":"AAqDA,wBAAgB,QAAQ,IAAI,IAAI,CAK/B;AAED,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,uBAAuB;QAC/B,MAAM,CAAC,EAAE,WAAW,CAAA;KACrB;CACF"}

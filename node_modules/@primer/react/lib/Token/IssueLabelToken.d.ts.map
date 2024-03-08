@@ -1,0 +1,1 @@
+{"version":3,"file":"IssueLabelToken.d.ts","sourceRoot":"","sources":["../../src/Token/IssueLabelToken.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAC,cAAc,EAAC,MAAM,aAAa,CAAA;AAM/C,OAAO,KAAK,EAAC,mBAAmB,IAAI,8BAA8B,EAAC,MAAM,sBAAsB,CAAA;AAE/F,MAAM,WAAW,oBAAqB,SAAQ,cAAc;IAC1D;;OAEG;IACH,SAAS,CAAC,EAAE,MAAM,CAAA;CACnB;AA4BD,QAAA,MAAM,eAAe,+EA2H8D,CAAA;AAInF,eAAe,eAAe,CAAA"}

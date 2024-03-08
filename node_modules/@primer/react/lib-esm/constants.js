@@ -1,0 +1,31 @@
+import { themeGet } from '@styled-system/theme-get';
+import * as styledSystem from 'styled-system';
+import theme from './theme.js';
+
+const {
+  get: getKey,
+  compose,
+  system
+} = styledSystem;
+const get = key => themeGet(key, getKey(theme, key));
+
+// Common props
+
+const COMMON = compose(styledSystem.space, styledSystem.color, styledSystem.display);
+// Typography props
+
+const whiteSpace = system({
+  whiteSpace: {
+    property: 'whiteSpace'
+    // cssProperty: 'whiteSpace',
+  }
+});
+const TYPOGRAPHY = compose(styledSystem.typography, whiteSpace);
+// Border props
+
+const BORDER = compose(styledSystem.border, styledSystem.shadow);
+// Layout props
+
+const LAYOUT = styledSystem.layout;
+
+export { BORDER, COMMON, LAYOUT, TYPOGRAPHY, get };
