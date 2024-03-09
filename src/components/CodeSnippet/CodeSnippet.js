@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
+  IconButton,
   StateLabel,
   TabNav,
   Text,
   TextInput,
 } from '@primer/react';
+import { CopyIcon } from '@primer/octicons-react';
 
 export function CodeSnippet() {
   const [edit, setEdit] = useState(false);
@@ -73,6 +75,8 @@ export function CodeSnippet() {
       </Box>
       <Box
         sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
           pt: 2,
           px: 3,
         }}
@@ -95,6 +99,10 @@ export function CodeSnippet() {
           <TabNav.Link href='#'>JavaScript</TabNav.Link>
           <TabNav.Link href='#'>GitHub CLI</TabNav.Link>
         </TabNav>
+        <IconButton
+          icon={CopyIcon}
+          variant='invisible'
+        />
       </Box>
       <Box
         sx={{
@@ -103,6 +111,7 @@ export function CodeSnippet() {
           borderColor: 'border.default',
           p: 3,
           fontSize: 1,
+          overflowX: 'auto',
         }}
       >
         <pre>
