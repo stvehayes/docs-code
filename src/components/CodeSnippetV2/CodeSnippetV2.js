@@ -3,14 +3,15 @@ import {
   Box,
   Button,
   IconButton,
+  Octicon,
   StateLabel,
   TabNav,
   Text,
   TextInput,
 } from '@primer/react';
-import { CopyIcon } from '@primer/octicons-react';
+import { CopyIcon, PencilIcon } from '@primer/octicons-react';
 
-export function CodeSnippet() {
+export function CodeSnippetV2() {
   const [edit, setEdit] = useState(false);
   const [hostname, setHostname] = useState('HOSTNAME');
 
@@ -200,20 +201,42 @@ export function CodeSnippet() {
               </Box>
             )}
             {!edit && (
-              <Text
-                sx={{
-                  color: 'accent.fg',
-                  fontWeight: 'bold',
-                  borderBottom: '1px solid',
-                  borderColor: 'border.default',
-                  borderBottomStyle: 'dashed',
-                  px: 1,
-                  cursor: 'pointer',
-                }}
-                onClick={() => setEdit(!edit)}
-              >
-                {hostname}
-              </Text>
+              <>
+                <Box
+                  sx={{
+                    color: 'accent.fg',
+                    fontWeight: 'bold',
+                    border: '1px solid',
+                    borderTopColor: 'transparent',
+                    borderRightColor: 'transparent',
+                    borderBottomColor: 'border.default',
+                    borderLeftColor: 'transparent',
+                    borderBottomStyle: 'dashed',
+                    px: 1,
+                    cursor: 'pointer',
+
+                    ':hover': {
+                      borderRadius: 1,
+                      borderStyle: 'solid',
+                      border: '1px solid',
+                      borderColor: 'border.default',
+                      bg: '#eaeef2',
+                    },
+                  }}
+                  onClick={() => setEdit(!edit)}
+                >
+                  <Text
+                    sx={
+                      {
+                        // mr: 1,
+                      }
+                    }
+                  >
+                    {hostname}
+                  </Text>
+                  {/* <Octicon icon={PencilIcon} /> */}
+                </Box>
+              </>
             )}
             <Text>/api/v3/repos/OWNER/REPO/commits</Text>
           </Box>
