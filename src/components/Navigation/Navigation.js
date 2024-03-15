@@ -1,10 +1,5 @@
 import {
-  CommandPaletteIcon,
-  CopilotIcon,
-  GitPullRequestIcon,
-  InboxIcon,
   MarkGithubIcon,
-  ThreeBarsIcon,
   SearchIcon,
   GlobeIcon,
   TriangleDownIcon,
@@ -19,7 +14,6 @@ import {
 } from '@primer/react';
 
 export function Navigation() {
-  const src = 'https://avatars.githubusercontent.com/u/13389614?v=4';
   const style = {
     color: 'fg.muted',
   };

@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Button,
-  IconButton,
-  StateLabel,
-  TabNav,
-  Text,
-  TextInput,
-} from '@primer/react';
+import { Box, IconButton, TabNav, Text, TextInput } from '@primer/react';
 import { CopyIcon } from '@primer/octicons-react';
 
 export function CodeSnippet() {

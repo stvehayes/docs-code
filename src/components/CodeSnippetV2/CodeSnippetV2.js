@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
   Box,
-  Button,
   IconButton,
   Octicon,
-  StateLabel,
   TabNav,
   Text,
   TextInput,
