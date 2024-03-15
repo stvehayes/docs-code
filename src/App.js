@@ -1,6 +1,5 @@
-import { ThemeProvider, BaseStyles, Box } from '@primer/react';
+import { ThemeProvider, BaseStyles, Box, Text } from '@primer/react';
 import { Navigation } from './components/Navigation/Navigation';
-import { CodeSnippet } from './components/CodeSnippet/CodeSnippet';
 import { CodeSnippetV2 } from './components/CodeSnippetV2/CodeSnippetV2';
 import ColorModeSwitcher from './ColorModeSwitcher';
 
@@ -28,8 +27,8 @@ function App() {
               gap: 6,
             }}
           >
-            <CodeSnippet />
             <CodeSnippetV2 />
+            <CodeSnippetV2 hasIcon />
           </Box>
         </Box>{' '}
       </BaseStyles>
