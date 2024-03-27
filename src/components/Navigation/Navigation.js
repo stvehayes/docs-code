@@ -1,21 +1,27 @@
+import { useState } from 'react';
 import {
   MarkGithubIcon,
+  TriangleDownIcon,
+  PencilIcon,
   SearchIcon,
   GlobeIcon,
-  TriangleDownIcon,
 } from '@primer/octicons-react';
 import {
   Box,
   Button,
   Heading,
   IconButton,
-  TextInput,
   Text,
+  TextInput,
 } from '@primer/react';
+import { useHostname } from '../../context/HostnameContext';
 
 export function Navigation() {
-  const style = {
-    color: 'fg.muted',
+  const { hostname, updateHostname } = useHostname();
+  const [edit, setEdit] = useState(false);
+
+  const handleEditButton = () => {
+    setEdit(!edit);
   };
 
   return (
@@ -70,19 +76,86 @@ export function Navigation() {
             sx={{
               fontSize: '1',
               color: 'fg.muted',
+              fontWeight: 'semibold',
             }}
           >
             <Text
               sx={{
-                fontWeight: 'semibold',
                 color: 'fg.default',
               }}
             >
-              Version:
-            </Text>{' '}
-            Enterprise Server 3.12
+              Version:{' '}
+            </Text>
+            <Text
+              as='span'
+              sx={{
+                ml: 1,
+                fontWeight: 'inherit',
+              }}
+            >
+              Enterprise Server 3.12
+            </Text>
           </Text>
           <TriangleDownIcon />
+        </Box>
+        <Box
+          sx={{
+            display: ['none', null, 'flex'],
+            gap: '2',
+            alignItems: edit ? 'flex-end' : 'center',
+            ml: 2,
+          }}
+        >
+          <Text
+            sx={{
+              fontSize: '1',
+              color: 'fg.muted',
+              fontWeight: 'semibold',
+            }}
+          >
+            <Text
+              sx={{
+                color: 'fg.default',
+              }}
+            >
+              Host Name:{' '}
+            </Text>
+            {edit ? (
+              <TextInput
+                aria-label='Search'
+                name='search'
+                size='small'
+                placeholder='Search GitHub Docs'
+                value={hostname}
+                onChange={(e) => {
+                  updateHostname(e.target.value);
+                }}
+                sx={{
+                  bg: 'canvas.subtle',
+                  color: 'fg.muted',
+                  display: 'inline-flex',
+                  ml: 2,
+                }}
+              />
+            ) : (
+              <Text
+                as='span'
+                sx={{
+                  ml: 1,
+                  fontWeight: 'inherit',
+                }}
+              >
+                {hostname}
+              </Text>
+            )}
+          </Text>
+          <Button
+            variant='invisible'
+            size='small'
+            onClick={handleEditButton}
+          >
+            {edit ? 'Save' : 'Edit'}
+          </Button>
         </Box>
       </Box>
 
@@ -106,7 +179,9 @@ export function Navigation() {
         />
 
         <IconButton
-          sx={style}
+          sx={{
+            color: 'fg.muted',
+          }}
           icon={GlobeIcon}
           aria-label='Open inbox'
         />
