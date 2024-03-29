@@ -90,13 +90,20 @@ export function Navigation() {
               as='span'
               sx={{
                 ml: 1,
-                fontWeight: 'inherit',
+                fontWeight: '400',
               }}
             >
               Enterprise Server 3.12
             </Text>
           </Text>
-          <TriangleDownIcon />
+          <Box
+            sx={{
+              color: 'fg.muted',
+              display: 'flex',
+            }}
+          >
+            <TriangleDownIcon />
+          </Box>
         </Box>
         <Box
           sx={{
@@ -104,6 +111,7 @@ export function Navigation() {
             gap: '2',
             alignItems: edit ? 'flex-end' : 'center',
             ml: 2,
+            position: 'relative',
           }}
         >
           <Text
@@ -120,21 +128,29 @@ export function Navigation() {
             >
               Host Name:{' '}
             </Text>
+
             {edit ? (
               <TextInput
                 aria-label='Search'
                 name='search'
                 size='small'
-                placeholder='Search GitHub Docs'
+                placeholder='Add your host name'
                 value={hostname}
                 onChange={(e) => {
                   updateHostname(e.target.value);
                 }}
                 sx={{
-                  bg: 'canvas.subtle',
+                  bg: 'canvas.default',
                   color: 'fg.muted',
                   display: 'inline-flex',
                   ml: 2,
+                  pl: 0,
+                  position: 'relative',
+                  input: {
+                    bg: 'canvas.default',
+                    px: 2,
+                    color: 'fg.default',
+                  },
                 }}
               />
             ) : (
@@ -142,7 +158,7 @@ export function Navigation() {
                 as='span'
                 sx={{
                   ml: 1,
-                  fontWeight: 'inherit',
+                  fontWeight: '400',
                 }}
               >
                 {hostname}
@@ -153,6 +169,10 @@ export function Navigation() {
             variant='invisible'
             size='small'
             onClick={handleEditButton}
+            sx={{
+              display: 'absolute',
+              right: 0,
+            }}
           >
             {edit ? 'Save' : 'Edit'}
           </Button>
