@@ -28,7 +28,7 @@ export function Navigation() {
     <Box
       sx={{
         display: 'flex',
-        bg: 'canvas.subtle',
+        bg: 'canvas.default',
         borderBottom: '1px solid',
         borderColor: 'border.default',
         p: 3,
