@@ -10,15 +10,22 @@ import {
 } from '@primer/react';
 import { CopyIcon, InfoIcon, PencilIcon } from '@primer/octicons-react';
 import { useHostname } from '../../context/HostnameContext';
+import { useLastEdited } from '../../context/LastEditedContext';
 
 export function CodeSnippet({ ...props }) {
   const [edit, setEdit] = useState(false);
   const { hostname, updateHostname } = useHostname();
+  const { lastEditedInGlobalNav, setLastEdited } = useLastEdited();
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       setEdit(false);
     }
+  };
+
+  const editHostName = (e) => {
+    updateHostname(e.target.value);
+    setLastEdited(false);
   };
 
   useEffect(() => {
@@ -37,16 +44,6 @@ export function CodeSnippet({ ...props }) {
         gap: 3,
       }}
     >
-      {/* <Text
-        sx={{
-          fontFamily: 'mono',
-          fontSize: 1,
-          color: 'fg.muted',
-          textAlign: 'center',
-        }}
-      >
-        {props.hasIcon ? 'With' : 'No'} icon
-      </Text> */}
       <Box
         sx={{
           border: '1px solid',
@@ -173,7 +170,7 @@ export function CodeSnippet({ ...props }) {
                     type='text'
                     autoFocus
                     value={hostname}
-                    onChange={(e) => updateHostname(e.target.value)}
+                    onChange={editHostName}
                     p='0'
                     sx={{
                       paddingLeft: 0,
@@ -254,43 +251,45 @@ export function CodeSnippet({ ...props }) {
             </Box>
           </pre>
         </Box>
-        {hostname === 'HOSTNAME' || edit ? null : (
-          <Flash
-            full
-            sx={{
-              py: 3,
-              display: 'flex',
-              gap: 2,
-              alignItems: 'center',
-              borderBottom: 'none',
-            }}
-          >
-            <Octicon icon={InfoIcon} />
-            <Box
-              sx={{
-                width: '100%',
-              }}
-            >
-              <Text
+        {hostname === 'HOSTNAME' || edit
+          ? null
+          : !lastEditedInGlobalNav && (
+              <Flash
+                full
                 sx={{
-                  fontSize: 1,
+                  py: 3,
+                  display: 'flex',
+                  gap: 2,
+                  alignItems: 'center',
+                  borderBottom: 'none',
                 }}
               >
-                The host name{' '}
-                <Text
-                  as='span'
+                <Octicon icon={InfoIcon} />
+                <Box
                   sx={{
-                    fontSize: 'inherit',
-                    fontWeight: '600',
+                    width: '100%',
                   }}
                 >
-                  {hostname}
-                </Text>{' '}
-                will update across all of GitHub Docs.
-              </Text>
-            </Box>
-          </Flash>
-        )}
+                  <Text
+                    sx={{
+                      fontSize: 1,
+                    }}
+                  >
+                    The host name{' '}
+                    <Text
+                      as='span'
+                      sx={{
+                        fontSize: 'inherit',
+                        fontWeight: '600',
+                      }}
+                    >
+                      {hostname}
+                    </Text>{' '}
+                    will update across all of GitHub Docs.
+                  </Text>
+                </Box>
+              </Flash>
+            )}
       </Box>
     </Box>
   );

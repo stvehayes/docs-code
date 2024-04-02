@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {
   MarkGithubIcon,
   TriangleDownIcon,
-  PencilIcon,
   SearchIcon,
   GlobeIcon,
 } from '@primer/octicons-react';
@@ -15,13 +14,21 @@ import {
   TextInput,
 } from '@primer/react';
 import { useHostname } from '../../context/HostnameContext';
+import { useLastEdited } from '../../context/LastEditedContext';
 
 export function Navigation() {
   const { hostname, updateHostname } = useHostname();
   const [edit, setEdit] = useState(false);
+  const { setLastEdited } = useLastEdited();
 
   const handleEditButton = () => {
     setEdit(!edit);
+    setLastEdited(true);
+  };
+
+  const editFromNav = (e) => {
+    updateHostname(e.target.value);
+    setLastEdited(true);
   };
 
   return (
@@ -136,9 +143,7 @@ export function Navigation() {
                 size='small'
                 placeholder='Add your host name'
                 value={hostname}
-                onChange={(e) => {
-                  updateHostname(e.target.value);
-                }}
+                onChange={editFromNav}
                 sx={{
                   bg: 'canvas.default',
                   color: 'fg.muted',
