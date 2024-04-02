@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   MarkGithubIcon,
   TriangleDownIcon,
@@ -30,6 +30,20 @@ export function Navigation() {
     updateHostname(e.target.value);
     setLastEdited(true);
   };
+
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      setEdit(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   return (
     <Box
@@ -96,8 +110,7 @@ export function Navigation() {
             <Text
               as='span'
               sx={{
-                ml: 1,
-                fontWeight: '400',
+                fontWeight: 'inherit',
               }}
             >
               Enterprise Server 3.12
@@ -162,8 +175,7 @@ export function Navigation() {
               <Text
                 as='span'
                 sx={{
-                  ml: 1,
-                  fontWeight: '400',
+                  fontWeight: 'inherit',
                 }}
               >
                 {hostname}
