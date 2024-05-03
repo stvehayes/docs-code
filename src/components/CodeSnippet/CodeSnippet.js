@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   Box,
+  Button,
+  Dialog,
+  FormControl,
   Flash,
   IconButton,
   Octicon,
   TabNav,
   Text,
   TextInput,
+  Link,
 } from '@primer/react';
 import { CopyIcon, InfoIcon, PencilIcon } from '@primer/octicons-react';
 import { useHostname } from '../../context/HostnameContext';
@@ -35,6 +39,9 @@ export function CodeSnippet({ ...props }) {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+
+  const returnFocusRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <Box
@@ -214,44 +221,46 @@ export function CodeSnippet({ ...props }) {
                   </Box>
                 </Box>
               )}
-              {!edit && (
-                <>
-                  <Box
-                    sx={{
-                      color: 'accent.fg',
-                      fontWeight: 'bold',
-                      border: '1px solid',
-                      borderTopColor: 'transparent',
-                      borderRightColor: 'transparent',
-                      borderBottomColor: 'border.default',
-                      borderLeftColor: 'transparent',
-                      borderBottomStyle: 'dashed',
-                      px: 1,
-                      cursor: 'pointer',
+              {/* {!edit && ( */}
+              <>
+                <Box
+                  onClick={() => setIsOpen(true)}
+                  ref={returnFocusRef}
+                  sx={{
+                    color: 'accent.fg',
+                    fontWeight: 'bold',
+                    border: '1px solid',
+                    borderTopColor: 'transparent',
+                    borderRightColor: 'transparent',
+                    borderBottomColor: 'border.default',
+                    borderLeftColor: 'transparent',
+                    borderBottomStyle: 'dashed',
+                    px: 1,
+                    cursor: 'pointer',
 
-                      ':hover': {
-                        borderRadius: 1,
-                        borderStyle: 'solid',
-                        border: '1px solid',
-                        borderColor: 'border.default',
-                      },
-                    }}
-                    onClick={() => setEdit(!edit)}
-                  >
-                    <Text>{hostname}</Text>
-                    {props.hasIcon && (
-                      <Box sx={{ display: 'inline', ml: 1 }}>
-                        <Octicon icon={PencilIcon} />
-                      </Box>
-                    )}
-                  </Box>
-                </>
-              )}
+                    ':hover': {
+                      borderRadius: 1,
+                      borderStyle: 'solid',
+                      border: '1px solid',
+                      borderColor: 'border.default',
+                      bg: 'canvas.default',
+                    },
+                  }}
+                >
+                  <Text>{hostname}</Text>
+                  {props.hasIcon && (
+                    <Box sx={{ display: 'inline', ml: 1 }}>
+                      <Octicon icon={PencilIcon} />
+                    </Box>
+                  )}
+                </Box>
+              </>
+              {/* )} */}
               <Text>/api/v3/repos/OWNER/REPO/commits</Text>
             </Box>
           </pre>
         </Box>
-        {hostname === 'HOSTNAME' || edit
+        {/* {hostname === 'HOSTNAME' || edit
           ? null
           : !lastEditedInGlobalNav && (
               <Flash
@@ -289,8 +298,78 @@ export function CodeSnippet({ ...props }) {
                   </Text>
                 </Box>
               </Flash>
-            )}
+            )} */}
       </Box>
+      <Dialog
+        returnFocusRef={returnFocusRef}
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        aria-labelledby='header'
+        sx={{
+          borderRadius: '12px',
+          overflow: 'hidden',
+        }}
+      >
+        <Box
+          data-testid='inner'
+          sx={{}}
+        >
+          <Dialog.Header
+            id='header'
+            sx={{
+              bg: 'canvas.default',
+            }}
+          >
+            Edit your domain name
+          </Dialog.Header>
+          <Box p={3}>
+            <FormControl>
+              <FormControl.Label>Domain name</FormControl.Label>
+              <TextInput
+                value={hostname}
+                block
+                onChange={editHostName}
+              />
+            </FormControl>
+            <Text
+              sx={{
+                fontSize: '14px',
+                display: 'block',
+                mt: 4,
+              }}
+            >
+              Updating will include the new domain name in all code snippets
+              across GitHub Docs.{' '}
+              <Link
+                sx={{
+                  cursor: 'pointer',
+                }}
+              >
+                Learn more
+              </Link>
+            </Text>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 2,
+            justifyContent: 'flex-end',
+            width: '100%',
+            p: 3,
+            borderTop: '1px solid',
+            borderColor: 'border.default',
+          }}
+        >
+          <Button>Cancel</Button>
+          <Button
+            variant='primary'
+            onClick={() => setIsOpen(false)}
+          >
+            Save
+          </Button>
+        </Box>
+      </Dialog>
     </Box>
   );
 }

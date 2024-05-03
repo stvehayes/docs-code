@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   MarkGithubIcon,
   TriangleDownIcon,
@@ -8,6 +8,9 @@ import {
 import {
   Box,
   Button,
+  Dialog,
+  FormControl,
+  Link,
   Heading,
   IconButton,
   Text,
@@ -20,6 +23,8 @@ export function Navigation() {
   const { hostname, updateHostname } = useHostname();
   const [edit, setEdit] = useState(false);
   const { setLastEdited } = useLastEdited();
+  const [isOpen, setIsOpen] = useState(false);
+  const returnFocusRef = useRef();
 
   const handleEditButton = () => {
     setEdit(!edit);
@@ -129,7 +134,7 @@ export function Navigation() {
           sx={{
             display: ['none', null, 'flex'],
             gap: '2',
-            alignItems: edit ? 'flex-end' : 'center',
+            alignItems: 'center',
             ml: 2,
             position: 'relative',
           }}
@@ -149,49 +154,25 @@ export function Navigation() {
               Host Name:{' '}
             </Text>
 
-            {edit ? (
-              <TextInput
-                aria-label='Search'
-                name='search'
-                size='small'
-                placeholder='Add your host name'
-                value={hostname}
-                onChange={editFromNav}
-                sx={{
-                  bg: 'canvas.default',
-                  color: 'fg.muted',
-                  display: 'inline-flex',
-                  ml: 2,
-                  pl: 0,
-                  position: 'relative',
-                  input: {
-                    bg: 'canvas.default',
-                    px: 2,
-                    color: 'fg.default',
-                  },
-                }}
-              />
-            ) : (
-              <Text
-                as='span'
-                sx={{
-                  fontWeight: 'inherit',
-                }}
-              >
-                {hostname}
-              </Text>
-            )}
+            <Text
+              as='span'
+              sx={{
+                fontWeight: 'inherit',
+              }}
+            >
+              {hostname}
+            </Text>
           </Text>
           <Button
             variant='invisible'
             size='small'
-            onClick={handleEditButton}
+            onClick={() => setIsOpen(true)}
             sx={{
               display: 'absolute',
               right: 0,
             }}
           >
-            {edit ? 'Save' : 'Edit'}
+            Edit
           </Button>
         </Box>
       </Box>
@@ -231,6 +212,77 @@ export function Navigation() {
         />
         <Button>Sign up</Button>
       </Box>
+
+      <Dialog
+        returnFocusRef={returnFocusRef}
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        aria-labelledby='header'
+        sx={{
+          borderRadius: '12px',
+          overflow: 'hidden',
+        }}
+      >
+        <Box
+          data-testid='inner'
+          sx={{}}
+        >
+          <Dialog.Header
+            id='header'
+            sx={{
+              bg: 'canvas.default',
+            }}
+          >
+            Edit your domain name
+          </Dialog.Header>
+          <Box p={3}>
+            <FormControl>
+              <FormControl.Label>Domain name</FormControl.Label>
+              <TextInput
+                value={hostname}
+                block
+                onChange={(e) => updateHostname(e.target.value)}
+              />
+            </FormControl>
+            <Text
+              sx={{
+                fontSize: '14px',
+                display: 'block',
+                mt: 4,
+              }}
+            >
+              Updating will include the new domain name in all code snippets
+              across GitHub Docs.{' '}
+              <Link
+                sx={{
+                  cursor: 'pointer',
+                }}
+              >
+                Learn more
+              </Link>
+            </Text>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 2,
+            justifyContent: 'flex-end',
+            width: '100%',
+            p: 3,
+            borderTop: '1px solid',
+            borderColor: 'border.default',
+          }}
+        >
+          <Button>Cancel</Button>
+          <Button
+            variant='primary'
+            onClick={() => setIsOpen(false)}
+          >
+            Save
+          </Button>
+        </Box>
+      </Dialog>
     </Box>
   );
 }
