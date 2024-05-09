@@ -31,7 +31,8 @@ function App() {
                   gap: 6,
                 }}
               >
-                <CodeSnippet hasIcon />
+                {/* Use hasIcon for pencil icon */}
+                <CodeSnippet />
               </Box>
             </Box>{' '}
           </BaseStyles>

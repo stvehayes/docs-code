@@ -41,7 +41,7 @@ export function CodeSnippet({ ...props }) {
   }, []);
 
   const returnFocusRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Box
@@ -221,46 +221,45 @@ export function CodeSnippet({ ...props }) {
                   </Box>
                 </Box>
               )}
-              {/* {!edit && ( */}
-              <>
-                <Box
-                  onClick={() => setIsOpen(true)}
-                  ref={returnFocusRef}
-                  sx={{
-                    color: 'accent.fg',
-                    fontWeight: 'bold',
-                    border: '1px solid',
-                    borderTopColor: 'transparent',
-                    borderRightColor: 'transparent',
-                    borderBottomColor: 'border.default',
-                    borderLeftColor: 'transparent',
-                    borderBottomStyle: 'dashed',
-                    px: 1,
-                    cursor: 'pointer',
-
-                    ':hover': {
-                      borderRadius: 1,
-                      borderStyle: 'solid',
+              {!edit && (
+                <>
+                  <Box
+                    onClick={() => setEdit(true)}
+                    ref={returnFocusRef}
+                    sx={{
+                      color: 'accent.fg',
+                      fontWeight: 'bold',
                       border: '1px solid',
-                      borderColor: 'border.default',
-                      bg: 'canvas.default',
-                    },
-                  }}
-                >
-                  <Text>{hostname}</Text>
-                  {props.hasIcon && (
-                    <Box sx={{ display: 'inline', ml: 1 }}>
-                      <Octicon icon={PencilIcon} />
-                    </Box>
-                  )}
-                </Box>
-              </>
-              {/* )} */}
+                      borderTopColor: 'transparent',
+                      borderRightColor: 'transparent',
+                      borderBottomColor: 'border.default',
+                      borderLeftColor: 'transparent',
+                      borderBottomStyle: 'dashed',
+                      px: 1,
+                      cursor: 'pointer',
+
+                      ':hover': {
+                        borderRadius: 2,
+                        borderStyle: 'solid',
+                        border: '1px solid',
+                        borderColor: 'border.default',
+                      },
+                    }}
+                  >
+                    <Text>{hostname}</Text>
+                    {props.hasIcon && (
+                      <Box sx={{ display: 'inline', ml: 1 }}>
+                        <Octicon icon={PencilIcon} />
+                      </Box>
+                    )}
+                  </Box>
+                </>
+              )}
               <Text>/api/v3/repos/OWNER/REPO/commits</Text>
             </Box>
           </pre>
         </Box>
-        {/* {hostname === 'HOSTNAME' || edit
+        {hostname === 'HOSTNAME' || edit
           ? null
           : !lastEditedInGlobalNav && (
               <Flash
@@ -298,7 +297,7 @@ export function CodeSnippet({ ...props }) {
                   </Text>
                 </Box>
               </Flash>
-            )} */}
+            )}
       </Box>
       <Dialog
         returnFocusRef={returnFocusRef}
@@ -361,7 +360,7 @@ export function CodeSnippet({ ...props }) {
             borderColor: 'border.default',
           }}
         >
-          <Button>Cancel</Button>
+          <Button onClick={() => setIsOpen(false)}>Cancel</Button>
           <Button
             variant='primary'
             onClick={() => setIsOpen(false)}
