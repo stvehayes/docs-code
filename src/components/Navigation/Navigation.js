@@ -64,6 +64,7 @@ export function Navigation() {
       <Box
         sx={{
           display: 'flex',
+          width: '100%',
           gap: '3',
         }}
       >
@@ -182,6 +183,7 @@ export function Navigation() {
           display: 'flex',
           gap: '3',
           alignItems: 'center',
+          flexShrink: 0,
         }}
       >
         <TextInput
